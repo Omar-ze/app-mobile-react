@@ -2,46 +2,15 @@
 
 This project is a Quiz Application built using React Native. The application allows users to take quizzes on various topics and tracks their scores. Good for practicing your knowledge on React, React Native, Expo, State Management.
 
-## Project Structure
+## Screenshots
 
-The project has the following structure:
+<img src="photo_2025-02-22_15-37-57.jpg" alt="Demo Quiz App Screenshot" width="250" style="border-radius: 15px;" />
 
-```
-quiz/
-├── src/
-│   ├── components/
-│   │   ├── Question.js
-│   │   ├── Quiz.js
-│   │   └── Score.js
-│   ├── screens/
-│   │   ├── HomeScreen.js
-│   │   ├── QuizScreen.js
-│   │   └── ResultScreen.js
-│   ├── assets/
-│   │   ├── images/
-│   │   └── fonts/
-│   ├── App.js
-│   └── index.js
-├── README.md
-└── package.json
-```
+# Conceps Used
 
-### Components
-
-- **Question.js**: Renders individual quiz questions.
-- **Quiz.js**: Manages the quiz logic and state.
-- **Score.js**: Displays the user's score at the end of the quiz.
-
-### Screens
-
-- **HomeScreen.js**: The landing page of the app.
-- **QuizScreen.js**: The screen where the quiz takes place.
-- **ResultScreen.js**: Displays the results after the quiz is completed.
-
-### Assets
-
-- **images/**: Contains image assets used in the app.
-- **fonts/**: Contains custom fonts used in the app.
+- State Management with Context API
+- React Native Styling
+- Fundamentals of React Native
 
 ## Getting Started
 
