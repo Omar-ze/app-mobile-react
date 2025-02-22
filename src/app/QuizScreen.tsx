@@ -1,38 +1,56 @@
-import { View, Text, StyleSheet, SafeAreaView, Pressable } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  SafeAreaView,
+  Pressable,
+  BackHandler,
+} from "react-native";
 import { FontAwesome6 } from "@expo/vector-icons";
 import QuestionCard from "../components/QuestionCard";
 import questions from "./questions";
 import { useEffect, useState } from "react";
 import Card from "../components/Card";
+import { useQuiz } from "../providers/QuizProvider";
 
 const QuizScreen = () => {
-  const [currentQuestion, setCurrentQuestion] = useState(0);
-  // const [remainingTime, setRemainingTime] = useState(0);
-  const [totalQuestions, setTotalQuestions] = useState(questions.length);
-  const [score, setScore] = useState(0);
+  // const [currentQuestion, setCurrentQuestion] = useState(0);
+  // // const [remainingTime, setRemainingTime] = useState(0);
+  // const [totalQuestions, setTotalQuestions] = useState(questions.length);
+  // const [score, setScore] = useState(0);
 
-  useEffect(() => {
-    if (currentQuestion > questions.length - 1) {
-      console.log("Quiz completed");
-      return;
-    }
+  // using context
+  const {
+    currentQuestion,
+    totalQuestions,
+    totalCorrect,
+    onNext,
+    restart,
+    remainingTime,
+  } = useQuiz();
 
-    // setRemainingTime(20);
+  // useEffect(() => {
+  //   if (currentQuestion > questions.length - 1) {
+  //     console.log("Quiz completed");
+  //     return;
+  //   }
 
-    // // run a timer of 20 sec and auto move to next question
-    // const timer = setInterval(() => {
-    //   setRemainingTime((prev) => {
-    //     if (prev === 1) {
-    //       clearInterval(timer);
-    //       setCurrentQuestion((prev) => prev + 1);
-    //       return 20;
-    //     }
-    //     return prev - 1;
-    //   });
-    // }, 1000);
+  //   setRemainingTime(20);
 
-    // return () => clearInterval(timer);
-  }, [currentQuestion]);
+  //   // run a timer of 20 sec and auto move to next question
+  //   const timer = setInterval(() => {
+  //     setRemainingTime((prev) => {
+  //       if (prev === 1) {
+  //         clearInterval(timer);
+  //         setCurrentQuestion((prev) => prev + 1);
+  //         return 20;
+  //       }
+  //       return prev - 1;
+  //     });
+  //   }, 1000);
+
+  //   return () => clearInterval(timer);
+  // }, [currentQuestion]);
 
   return (
     <SafeAreaView style={styles.page}>
@@ -48,27 +66,34 @@ const QuizScreen = () => {
         {/* body */}
         {totalQuestions ? (
           <View>
-            <QuestionCard
+            {/* <QuestionCard
               result={(score) => setScore(score)}
               question={questions[currentQuestion]}
+            /> */}
+            <QuestionCard
+              // result={(score) => setScore(score)}
+              question={questions[currentQuestion]}
             />
-            <Text style={styles.time}>20 sec</Text>
+            <Text style={styles.time}>{remainingTime}sec</Text>
           </View>
         ) : (
           <View>
             <Card title="Quiz Completed">
               <Text>Congratulations! You have completed the quiz.</Text>
-              <Text>Your score is {score}</Text>
+              <Text>
+                Your score is {totalCorrect}/{questions.length}
+              </Text>
             </Card>
           </View>
         )}
         {/* footer */}
         {totalQuestions > 0 ? (
           <Pressable
-            onPress={() => {
-              setCurrentQuestion((prev) => prev + 1);
-              setTotalQuestions((prev) => prev - 1);
-            }}
+            // onPress={() => {
+            //   setCurrentQuestion((prev) => prev + 1);
+            //   setTotalQuestions((prev) => prev - 1);
+            // }}
+            onPress={onNext}
             onLongPress={() => console.log("Looooonggg pressed")}
             style={styles.button}
           >
@@ -82,11 +107,12 @@ const QuizScreen = () => {
           </Pressable>
         ) : (
           <Pressable
-            onPress={() => {
-              setCurrentQuestion(0);
-              setTotalQuestions(questions.length);
-              setScore(0);
-            }}
+            // onPress={() => {
+            //   setCurrentQuestion(0);
+            //   setTotalQuestions(questions.length);
+            //   setScore(0);
+            // }}
+            onPress={restart}
             onLongPress={() => console.log("Looooonggg pressed")}
             style={styles.button}
           >

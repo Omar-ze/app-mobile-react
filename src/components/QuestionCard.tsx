@@ -1,33 +1,43 @@
 import { View, Text, StyleSheet } from "react-native";
 import AnswerOption from "./AnswerOption";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import Card from "./Card";
+import { useQuiz } from "../providers/QuizProvider";
 
-interface Props {
-  question: { title: string; options: string[]; correctAnswer: string };
-  result: (totalCorrect: number) => void;
+export interface Question {
+  title: string;
+  options: string[];
+  correctAnswer: string;
 }
 
-const QuestionCard = ({ question, result }: Props) => {
-  // const selectedOption = question.options[0];
-  const [selectedOption, setSelectedOption] = useState("");
-  const [totalCorrect, setTotalCorrect] = useState(0);
+interface Props {
+  question: Question;
+  // result: (totalCorrect: number) => void;
+}
 
-  useEffect(() => {
-    result(totalCorrect);
-  }, [totalCorrect]);
+const QuestionCard = ({ question }: Props) => {
+  // const [selectedOption, setSelectedOption] = useState("");
+  // const [totalCorrect, setTotalCorrect] = useState(0);
+
+  // using context
+  const { selectedOption, handleOptionSelect } = useQuiz();
+
+  // useEffect(() => {
+  //   result(totalCorrect);
+  // }, [totalCorrect]);
 
   return (
     <Card title={question.title}>
       <View style={{ gap: 8 }}>
         {question.options.map((option) => (
           <AnswerOption
-            handlePress={(option) => {
-              setSelectedOption(option);
-              if (option === question.correctAnswer) {
-                setTotalCorrect((prev) => prev + 1);
-              }
-            }}
+            // handlePress={(option) => {
+            //   setSelectedOption(option);
+            //   if (option === question.correctAnswer) {
+            //     setTotalCorrect((prev) => prev + 1);
+            //   }
+            // }}
+            handlePress={() => handleOptionSelect(option)}
             key={option}
             option={option}
             isSelected={option === selectedOption}
