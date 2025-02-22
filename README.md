@@ -4,7 +4,7 @@ This project is a Quiz Application built using React Native. The application all
 
 ## Screenshots
 
-<img src="photo_2025-02-22_15-37-57.jpg" alt="Demo Quiz App Screenshot" width="250" style="border-radius: 15px;" />
+<img src="./assets/photo_2025-02-22_15-37-57.jpg" alt="Demo Quiz App Screenshot" width="250" style="border-radius: 15px;" />
 
 # Conceps Used
 
