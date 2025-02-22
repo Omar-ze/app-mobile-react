@@ -5,6 +5,7 @@ import {
   useEffect,
   useState,
 } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Question } from "../components/QuestionCard";
 import questions from "../app/questions";
 
@@ -18,6 +19,7 @@ interface QuizContextType {
   handleOptionSelect: (option: string) => void;
   remainingTime: number;
   restart: () => void;
+  highScore: number;
 }
 
 const QuizContext = createContext<QuizContextType>({} as QuizContextType);
@@ -28,8 +30,14 @@ const QuizProvider = ({ children }: { children: ReactNode }) => {
   const [selectedOption, setSelectedOption] = useState("");
   const [totalCorrect, setTotalCorrect] = useState(0);
   const [remainingTime, setRemainingTime] = useState(0);
+  const [highScore, setHighScore] = useState(0);
 
   const question = questions[currentQuestion];
+
+  // Load high score from storage
+  useEffect(() => {
+    loadHighScore();
+  }, []);
 
   const onNext = () => {
     if (currentQuestion < questions.length) {
@@ -51,6 +59,24 @@ const QuizProvider = ({ children }: { children: ReactNode }) => {
     setTotalCorrect(0);
     setTotalQuestions(questions.length);
     setSelectedOption("");
+  };
+
+  const saveHighScore = async (score: number) => {
+    try {
+      await AsyncStorage.setItem("highScore", score.toString());
+    } catch (error) {
+      console.error("Error saving high score", error);
+    }
+  };
+
+  const loadHighScore = async () => {
+    try {
+      const value = await AsyncStorage.getItem("highScore");
+      console.log("Loading high score", value);
+      setHighScore(value ? parseInt(value) : 0);
+    } catch (error) {
+      console.log("Error loading high score", error);
+    }
   };
 
   useEffect(() => {
@@ -76,6 +102,15 @@ const QuizProvider = ({ children }: { children: ReactNode }) => {
     return () => clearInterval(timer);
   }, [currentQuestion]);
 
+  // Load high score from storage
+  useEffect(() => {
+    // save high score
+    if (totalCorrect > highScore) {
+      setHighScore(totalCorrect);
+      saveHighScore(totalCorrect);
+    }
+  }, [totalCorrect]);
+
   return (
     <QuizContext.Provider
       value={
@@ -89,6 +124,7 @@ const QuizProvider = ({ children }: { children: ReactNode }) => {
           handleOptionSelect,
           restart,
           remainingTime,
+          highScore,
         } as QuizContextType
       }
     >

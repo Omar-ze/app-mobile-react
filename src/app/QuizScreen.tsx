@@ -12,6 +12,7 @@ import questions from "./questions";
 import { useEffect, useState } from "react";
 import Card from "../components/Card";
 import { useQuiz } from "../providers/QuizProvider";
+import LottieView from "lottie-react-native";
 
 const QuizScreen = () => {
   // const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -27,6 +28,7 @@ const QuizScreen = () => {
     onNext,
     restart,
     remainingTime,
+    highScore,
   } = useQuiz();
 
   // useEffect(() => {
@@ -77,14 +79,39 @@ const QuizScreen = () => {
             <Text style={styles.time}>{remainingTime}sec</Text>
           </View>
         ) : (
-          <View>
+          <>
+            <LottieView
+              style={StyleSheet.absoluteFill}
+              autoPlay
+              loop={false}
+              source={require("../../assets/party.json")}
+            />
             <Card title="Quiz Completed">
               <Text>Congratulations! You have completed the quiz.</Text>
               <Text>
                 Your score is {totalCorrect}/{questions.length}
               </Text>
+              <Text>High Score: {highScore}</Text>
             </Card>
-          </View>
+            <Pressable
+              // onPress={() => {
+              //   setCurrentQuestion(0);
+              //   setTotalQuestions(questions.length);
+              //   setScore(0);
+              // }}
+              onPress={restart}
+              onLongPress={() => console.log("Looooonggg pressed")}
+              style={styles.button}
+            >
+              <Text style={styles.buttonText}>Restart Quiz</Text>
+              <FontAwesome6
+                style={styles.buttonIcon}
+                name="arrow-right-long"
+                size={16}
+                color="white"
+              />
+            </Pressable>
+          </>
         )}
         {/* footer */}
         {totalQuestions > 0 ? (
@@ -106,24 +133,7 @@ const QuizScreen = () => {
             />
           </Pressable>
         ) : (
-          <Pressable
-            // onPress={() => {
-            //   setCurrentQuestion(0);
-            //   setTotalQuestions(questions.length);
-            //   setScore(0);
-            // }}
-            onPress={restart}
-            onLongPress={() => console.log("Looooonggg pressed")}
-            style={styles.button}
-          >
-            <Text style={styles.buttonText}>Restart Quiz</Text>
-            <FontAwesome6
-              style={styles.buttonIcon}
-              name="arrow-right-long"
-              size={16}
-              color="white"
-            />
-          </Pressable>
+          <></>
         )}
       </View>
     </SafeAreaView>
@@ -171,3 +181,24 @@ const styles = StyleSheet.create({
     right: 25,
   },
 });
+
+const userContacts = [
+  {
+    name: "Ankit",
+    email: "",
+    phone: ["+91 1234567890", "+91 0987654321"],
+    image: "https://randomuser.me/api/portraits",
+  },
+  {
+    name: "John",
+    email: "",
+    phone: ["+91 1234567890", "+91 0987654321"],
+    image: "https://randomuser.me/api/portraits",
+  },
+  {
+    name: "Raechel",
+    email: "",
+    phone: ["+91 1234567890", "+91 0987654321"],
+    image: "https://randomuser.me/api/portraits",
+  },
+];
