@@ -1,4 +1,4 @@
-# ex de QCM en IT App Mobile
+# app de QCM en IT App Mobile
 
 Ce projet est une application de QCM développée avec React Native. Elle permet aux utilisateurs de tester leurs connaissances en IT, en enregistrant leurs scores.
 
