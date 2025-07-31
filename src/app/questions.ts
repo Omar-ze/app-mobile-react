@@ -1,42 +1,78 @@
 export default [
   {
-    title: 'What does HTML stand for?',
+    title: ' Quel langage est principalement utilisé pour styliser les pages web ?',
     options: [
-      'Hyper Text Markup Language',
-      'Highly Technical Markup Language',
-      'Hyperlinks and Text Markup Language',
-      'Hyper Tool Markup Language',
+      'Html',
+      'CSS',
+      'JavaScript',
+      'Python',
     ],
-    correctAnswer: 'Hyper Text Markup Language',
-  },
-  {
-    title: 'Which language is primarily used for styling web pages?',
-    options: ['HTML', 'Python', 'CSS', 'JavaScript'],
     correctAnswer: 'CSS',
   },
   {
-    title: "In programming, what is a 'bug'?",
-    options: [
-      "A feature that's not documented",
-      'An error in a program',
-      'A type of virus',
-      'An internet crawler',
-    ],
-    correctAnswer: 'An error in a program',
+    title: ' En POO, quel terme désigne un "modèle" à partir duquel on crée des objets ?',
+    options: ['Methode', 'Class', 'instance', 'Héritage'],
+    correctAnswer: 'Class',
   },
   {
-    title: "What is the purpose of a 'for loop' in programming?",
+    title: "Quel protocole est utilisé pour transférer des pages web sur Internet ?",
     options: [
-      'To repeat a block of code a limited number of times',
-      'To style a webpage',
-      'To declare variables',
-      'To create a new function',
+      "Http",
+      'FTP',
+      'SMTP',
+      'TCP',
     ],
-    correctAnswer: 'To repeat a block of code a limited number of times',
+    correctAnswer: 'Http',
   },
   {
-    title: 'Which symbol is used to denote an ID selector in CSS?',
+    title: "Quel principe de la POO permet de cacher les détails d'implémentation d'une classe ?",
+    options: [
+      'Polymorphisme',
+      'Encapsulation',
+      'Abstraction',
+      'Héritage',
+    ],
+    correctAnswer: 'Encapsulation',
+  },
+  {
+    title: 'Quel symbole utilisé pour note un ID en CSS ?',
     options: ['#', '.', '!', '@'],
     correctAnswer: '#',
+  },
+  {
+    title: 'Quelle balise HTML est utilisée pour créer un lien hypertexte ?',
+    options: [
+      '<link>',
+      '<a>',
+      '<url>',
+      '<href>',
+    ],
+    correctAnswer: '<a>',
+  },
+  {
+    title:'Quel framework JavaScript est utilisé pour créer des interfaces utilisateur réactives ?',
+    options:['Spring boot','React','Laravel','Django'],
+    correctAnswer:'React',
+  },
+  {
+    title:"Quel système permet de stocker des données côté client dans un navigateur web ?",
+    options:[' Session', 'LocalStorage', 'Cookies', 'Cache'],
+    correctAnswer:'LocalStorage',
+  },
+  {
+    title:'Quelle fonction permet de se connecter à une base de données MySQL en PHP ?',
+    options: [
+      'mysqli_connect()',
+      'mysql_connect() ou PDO',
+      'pdo_connect()',
+      'db_connect()',
+    ],
+    correctAnswer: 'mysql_connect() ou PDO',
+
+  },
+  {
+    title:'Quel opérateur permet de concaténer des chaînes en PHP ?',
+    options:['.','+','&','-'],
+    correctAnswer:'.',
   },
 ];

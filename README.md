@@ -1,37 +1,13 @@
-# Demo Quiz App
+# ex de QCM en IT App Mobile
 
-This project is a Quiz Application built using React Native. The application allows users to take quizzes on various topics and tracks their scores. Good for practicing your knowledge on React, React Native, Expo, State Management.
-
-## Screenshots
-
-<img src="./assets/photo_2025-02-22_15-37-57.jpg" alt="Demo Quiz App Screenshot" width="250" style="border-radius: 15px;" />
-
-# Conceps Used
-
-- State Management with Context API
-- React Native Styling
-- Fundamentals of React Native
+Ce projet est une application de QCM développée avec React Native. Elle permet aux utilisateurs de tester leurs connaissances en IT, en enregistrant leurs scores.
 
 ## Getting Started
 
 To get started with the project, clone the repository and install the dependencies:
 
-```bash
+```cmd
 git clone <repository-url>
-cd quiz
 npm install
+npx expo start
 ```
-
-Run the application:
-
-```bash
-npm start
-```
-
-## Contributing
-
-Contributions are welcome! Please open an issue or submit a pull request for any changes.
-
-## License
-
-This project is licensed under the MIT License.
